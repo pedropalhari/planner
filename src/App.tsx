@@ -70,11 +70,14 @@ function App() {
   let animationControl = useAnimation();
   let [isEditOpen, setIsEditOpen] = useState(false);
 
-  const toggleEdit = useCallback(() => {
+  const toggleEdit = useCallback(async () => {
     if (isEditOpen) {
-      animationControl.start({ height: 0 });
+      await animationControl.start(
+        { height: 0 },
+        { type: "tween", duration: 0.4 }
+      );
     } else {
-      animationControl.start({ height: 430 });
+      animationControl.start({ height: 430 }, { type: "tween", duration: 0.4 });
     }
 
     isEditOpen = !isEditOpen;
@@ -146,8 +149,8 @@ function App() {
             },
           }}
           value={localJSON}
-          onChange={(e: any) => {
-            setLocalJSON(e);
+          onChange={(json: any) => {
+            setLocalJSON(json);
           }}
         />
 
