@@ -32,6 +32,8 @@ const HourMarkContainer = styled.div`
   top: ${(props: HourMarkContainerProps) => props.height}px;
 
   scroll-margin: 160px;
+
+  z-index: ${(props: HourMarkContainerProps) => (props.isNow ? "999" : "")};
 `;
 
 const HourMarkLabel = styled.span`

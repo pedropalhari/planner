@@ -2,7 +2,8 @@ import React from "react";
 import styled from "@emotion/styled";
 import HourMark from "./HourMark";
 import { TOTAL_HEIGHT, getHeight } from "./height-utils";
-import { SCHEDULE } from "./schedule";
+import { Schedule } from "./schedule";
+import motion from "framer-motion";
 
 const HourListContainer = styled.div`
   height: ${TOTAL_HEIGHT}px;
@@ -44,7 +45,11 @@ const Card = styled.div`
   font-weight: bold;
 `;
 
-export default function HourList() {
+interface Props {
+  schedule: Schedule[];
+}
+
+export default function HourList(props: Props) {
   return (
     <HourListContainer>
       {new Array(48).fill(0).map((_, index) => {
@@ -56,7 +61,7 @@ export default function HourList() {
 
       <HourMark hours={0} minutes={0} isNow />
 
-      {SCHEDULE.map((s, index) => (
+      {props.schedule.map((s, index) => (
         <Card
           key={`${s.name}_${s.startingTime}_${s.duration}`}
           initialHeight={getHeight(s.startingTime)}
