@@ -55,8 +55,22 @@ export default function HourList(props: Props) {
       {new Array(48).fill(0).map((_, index) => {
         let roundedHour = Math.floor(index / 2);
 
-        if (index % 2 == 0) return <HourMark hours={roundedHour} minutes={0} />;
-        else return <HourMark hours={roundedHour} minutes={30} />;
+        if (index % 2 == 0)
+          return (
+            <HourMark
+              key={`time_${roundedHour}_0`}
+              hours={roundedHour}
+              minutes={0}
+            />
+          );
+        else
+          return (
+            <HourMark
+              key={`time_${roundedHour}_30`}
+              hours={roundedHour}
+              minutes={30}
+            />
+          );
       })}
 
       <HourMark hours={0} minutes={0} isNow />
